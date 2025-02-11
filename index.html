@@ -7,23 +7,21 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="intro">
+    <div id="intro" class="fade-in">
         <h1>Knock..knock..</h1>
         <p>Please press the button because today is your birthday!</p>
         <button onclick="showBirthdayMessage()">Press Me</button>
     </div>
-
-    <div id="birthdayMessage" style="display: none; text-align: center;">
-        <h1>Happy Turning 25 My Favourite Person!</h1>
-        <button onclick="showCard()">Kartu Ucapan</button>
-        <button onclick="startSurprise()">Surprise Button</button>
+    <div id="birthdayMessage" class="fade-in" style="display: none; text-align: center;">
+        <h1>🎉 Happy Turning 25 My Favourite Person! 🎉</h1>
+        <button onclick="showCard()">💌 Kartu Ucapan</button>
+        <button onclick="startSurprise()">🎆 Surprise Button</button>
     </div>
-
-    <div id="card" style="display: none; text-align: center;">
+    <div id="card" class="fade-in" style="display: none; text-align: center;">
         <div class="envelope">
             <p>Happy Turning 25 My Favourite Person!</p>
             <p>I don’t have many wishes for you, but STAY ALIVE!</p>
-            <p>I just wanna say thank you for still being you all this time, you made it until today!</p>
+            <p>You made it until today, and that’s amazing! 🎈</p>
             <p>You hold my heart in a way I couldn’t break even if I wanted to.</p>
             <p>Enjoy every journey that comes after turning 25, Gee!</p>
             <p>Thank you! <3</p>
@@ -31,7 +29,6 @@
             <p>Bee 🐝</p>
         </div>
     </div>
-
     <canvas id="fireworksCanvas" style="display: none; position: absolute; top: 0; left: 0;"></canvas>
 
     <script src="script.js"></script>
