@@ -16,33 +16,28 @@ function showCard() {
 function startSurprise() {
     document.getElementById("birthdayMessage").style.display = "none";
     document.getElementById("fireworksCanvas").style.display = "block";
-    startFireworks();
+    mulaiKembangApi();
 }
 
 let fireworks = [];
 
-function Firework(x, y, type) {
+function Firework(x, y) {
     this.x = x;
     this.y = y;
     this.radius = 3;
+    this.alpha = 1;
     this.exploded = false;
     this.particles = [];
     this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
     this.explosionHeight = Math.random() * (canvas.height * 0.5) + canvas.height * 0.3;
-    this.type = type;
 
     this.update = function() {
         if (!this.exploded) {
             this.y -= 3;
             if (this.y < this.explosionHeight) {
                 this.exploded = true;
-                for (let i = 0; i < 30; i++) {
+                for (let i = 0; i < 40; i++) {
                     this.particles.push(new Particle(this.x, this.y));
-                }
-                if (this.type === "text") {
-                    showText(this.x, this.y);
-                } else if (this.type === "flower") {
-                    showFlower(this.x, this.y);
                 }
             }
         }
@@ -81,36 +76,11 @@ function Particle(x, y) {
     this.draw = function() {
         ctx.globalAlpha = this.alpha;
         ctx.beginPath();
-        ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+        ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
         ctx.fillStyle = this.color;
         ctx.fill();
         ctx.globalAlpha = 1;
     };
-}
-
-function showText(x, y) {
-    ctx.font = "40px Arial";
-    ctx.fillStyle = `hsl(${Math.random() * 360}, 100%, 50%)`;
-    ctx.textAlign = "center";
-    ctx.fillText("Happy Birthday Gee <3", x, y);
-}
-
-function showFlower(x, y) {
-    for (let i = 0; i < 10; i++) {  // 10 kelopak bunga
-        let angle = i * (Math.PI / 5);
-        let petalX = x + Math.cos(angle) * 50;
-        let petalY = y + Math.sin(angle) * 50;
-
-        ctx.beginPath();
-        ctx.arc(petalX, petalY, 15, 0, Math.PI * 2);
-        ctx.fillStyle = `hsl(${Math.random() * 360}, 100%, 75%)`;
-        ctx.fill();
-    }
-    
-    ctx.beginPath();
-    ctx.arc(x, y, 15, 0, Math.PI * 2);
-    ctx.fillStyle = "yellow";
-    ctx.fill();
 }
 
 function render() {
@@ -122,13 +92,13 @@ function render() {
             fireworks.splice(index, 1);
         }
     });
-
+    
     requestAnimationFrame(render);
 }
 
-function startFireworks() {
-    fireworks.push(new Firework(Math.random() * canvas.width, canvas.height, "text"));
-    fireworks.push(new Firework(Math.random() * canvas.width, canvas.height, "flower"));
+function mulaiKembangApi() {
+    fireworks.push(new Firework(Math.random() * canvas.width, canvas.height));
+    fireworks.push(new Firework(Math.random() * canvas.width, canvas.height));
 }
 
 render();
